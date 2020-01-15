@@ -294,6 +294,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1318604840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318604841}
+  m_Layer: 0
+  m_Name: Bathroom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318604841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318604840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.421875, y: 16.48, z: -32.86841}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3899808600216345815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 1657012880258217950, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4844247943797004826, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
         type: 3}
@@ -366,6 +396,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1097481530764111188, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097481530764111188, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150678038562064449, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150678038562064449, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856618302004816415, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856618302004816415, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901530174324571174, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901530174324571174, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134840289782795602, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7044887302356520538, guid: 2b39baf60f0f03a4bbd1c9fcac512bf9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -385,10 +460,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeMailroom
       objectReference: {fileID: 0}
+    - target: {fileID: 6824676915872428434, guid: e59fe11288dca8e4aadeee7867ff0b94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6824676915872428435, guid: e59fe11288dca8e4aadeee7867ff0b94,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.75
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 6824676915872428435, guid: e59fe11288dca8e4aadeee7867ff0b94,
         type: 3}
