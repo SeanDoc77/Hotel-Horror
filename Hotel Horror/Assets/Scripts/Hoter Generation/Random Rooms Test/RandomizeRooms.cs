@@ -12,9 +12,11 @@ public class RandomizeRooms : MonoBehaviour
 
     public int roomAmount;
 
+    public float roomWidth;
+    public float roomLength;
     // Start is called before the first frame update
     void Start()
     {
-        
+        int[] rooms =  
     }
 }
