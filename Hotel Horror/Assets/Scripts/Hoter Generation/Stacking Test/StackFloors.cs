@@ -19,6 +19,7 @@ public class StackFloors : MonoBehaviour
         //Instantiates the main and second floor prefabs
         Instantiate(mainFloor, new Vector3(0f, spawnHeight, 0f), Quaternion.identity);
         Instantiate(secondFloor, new Vector3(0f, spawnHeight + floorHeight, 0f), Quaternion.identity);
+
         //Instantiates the remaing guest floors
         addGuestFloors();
     }
