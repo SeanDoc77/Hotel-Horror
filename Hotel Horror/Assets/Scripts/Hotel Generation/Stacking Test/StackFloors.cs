@@ -24,12 +24,6 @@ public class StackFloors : MonoBehaviour
         addGuestFloors();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //Function that generates create a random amout of floors above the second floor
     private void addGuestFloors()
     {
