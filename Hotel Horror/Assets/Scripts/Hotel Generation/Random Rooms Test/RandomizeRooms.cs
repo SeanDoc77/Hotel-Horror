@@ -52,9 +52,9 @@ public class RandomizeRooms : MonoBehaviour
 
     private void placeRooms()
     {
-        float x = -57.34f;
-        float y = -3.892f;
-        float z = -3.5336f;
+        float x = 0;
+        float y = 0;
+        float z = 0f;
         float r = 0f;
         //Loops through the first half of rooms and instatiates random guest rooms
         for (int i=0; i<rooms.Length/2; i++)
@@ -87,9 +87,9 @@ public class RandomizeRooms : MonoBehaviour
         }
 
         //Resets x, y, and z for second row
-        x = 57.34f;
-        y = -3.892f;
-        z = -76.4664f;
+        x = 0f;
+        y = 0f;
+        z = -80f;
         r = 180f;
         //Loops through the second half of rooms and instatiates random guest rooms
         for (int i = rooms.Length / 2; i < rooms.Length; i++)
