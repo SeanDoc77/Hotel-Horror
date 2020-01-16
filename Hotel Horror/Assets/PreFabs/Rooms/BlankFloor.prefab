@@ -237,13 +237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d7f8882a8e1364b85f38b1d2e93488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerRoom: {fileID: 7448247588937683792, guid: 11bd4615231036a4ba30250512b5c82e,
+  powerRoom: {fileID: 2996840303828021566, guid: 11bd4615231036a4ba30250512b5c82e,
     type: 3}
-  utilityRoom: {fileID: 7448247588937683792, guid: 11bd4615231036a4ba30250512b5c82e,
+  utilityRoom: {fileID: 2996840303828021566, guid: 11bd4615231036a4ba30250512b5c82e,
     type: 3}
-  room1: {fileID: 7448247588937683792, guid: 11bd4615231036a4ba30250512b5c82e, type: 3}
-  room2: {fileID: 7448247588937683792, guid: 11bd4615231036a4ba30250512b5c82e, type: 3}
-  room3: {fileID: 7448247588937683792, guid: 11bd4615231036a4ba30250512b5c82e, type: 3}
+  room1: {fileID: 2996840303828021566, guid: 11bd4615231036a4ba30250512b5c82e, type: 3}
+  room2: {fileID: 2996840303828021566, guid: 11bd4615231036a4ba30250512b5c82e, type: 3}
+  room3: {fileID: 2996840303828021566, guid: 11bd4615231036a4ba30250512b5c82e, type: 3}
   roomAmount: 10
   roomWidth: 20
   roomLength: 20
