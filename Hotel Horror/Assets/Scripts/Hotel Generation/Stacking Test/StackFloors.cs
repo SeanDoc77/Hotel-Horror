@@ -14,7 +14,7 @@ public class StackFloors : MonoBehaviour
     void Start()
     {
         //Declares the Y value to instatiate the main floor
-        float spawnHeight = floorHeight / 2;
+        float spawnHeight = 0;
 
         //Instantiates the main and second floor prefabs
         Instantiate(mainFloor, new Vector3(0f, spawnHeight, 0f), Quaternion.identity);
@@ -34,7 +34,7 @@ public class StackFloors : MonoBehaviour
     private void addGuestFloors()
     {
         //Declares the Y value offset instatiate new floors
-        float spawnHeight = floorHeight / 2;
+        float spawnHeight = 0;
 
         //Creates a random integer between (minFloorCount - 2) and (maxFloorCount - 2)
         int guestFloors = Random.Range(minFloorCount, maxFloorCount)-2;
@@ -43,7 +43,7 @@ public class StackFloors : MonoBehaviour
         int floorCount = 2;
         for (int i=0; i<guestFloors; i++)
         {
-            Instantiate(guestFloor, new Vector3(0f, spawnHeight + floorHeight*floorCount, 0f), Quaternion.identity);
+            GameObject newFloor = Instantiate(guestFloor, new Vector3(0f, spawnHeight + floorHeight*floorCount, 0f), Quaternion.identity);
             floorCount++;
         }
 
