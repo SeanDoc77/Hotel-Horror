@@ -15,13 +15,17 @@ public class AssignPrefabToRoom : MonoBehaviour
         int X = maxStr.Length;
 
         // get an X digit number from our seed
-        newSeedStr = newSeedStr.Substring(newSeedStr.Length - X, X);
+        newSeedStr = newSeedStr.Substring(newSeedStr.Length - X - 1, X + 1);
 
         float newSeed = float.Parse(newSeedStr);
         // this needs to be mapped to a number from 1 to numPrefabs,
         // which will be our prefabID
-        int prefabID = (int)Mathf.Ceil(10 * newSeed / numPreFabs);
-        
+        int prefabID = (int)Mathf.Floor(newSeed / numPreFabs);
+
+        // prefabID currently is a value from 0 to numPreFabs-1
+        // to make it go from 1 to numPreFabs, change 
+        // line 18: newSeedStr = newSeedStr.Substring(newSeedStr.Length - X, X + 1);
+        // line 23: int prefabID = (int)Mathf.Floor(10 * newSeed / numPreFabs);
         return prefabID;
     }
     private void Start()
