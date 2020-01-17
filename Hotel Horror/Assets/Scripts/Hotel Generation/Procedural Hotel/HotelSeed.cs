@@ -9,8 +9,8 @@ public class HotelSeed
 
     public void generateSeed()
     {
-        //Create a random int between 0 and 9999999999
-        int rand = Random.Range(0, 31622);
+        //Create a random int between 1,000,000,000 and 2,147,483,647
+        int rand = Random.Range(10000, 2147483647);
 
         //Sets global seed varible to the random seed
         HotelSeed.seed = rand;
