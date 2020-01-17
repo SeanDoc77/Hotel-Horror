@@ -53,7 +53,7 @@ public class RandomizeRooms : MonoBehaviour
     private void placeRooms()
     {
         float x = 0;
-        float y = 0;
+        float y = 0.0f;
         float z = 0f;
         float r = 0f;
         //Loops through the first half of rooms and instatiates random guest rooms
@@ -88,7 +88,7 @@ public class RandomizeRooms : MonoBehaviour
 
         //Resets x, y, and z for second row
         x = 0f;
-        y = 0f;
+        y = 0.0f;
         z = -80f;
         r = 180f;
         //Loops through the second half of rooms and instatiates random guest rooms
