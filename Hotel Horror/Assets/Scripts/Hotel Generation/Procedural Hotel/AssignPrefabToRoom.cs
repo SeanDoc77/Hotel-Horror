@@ -18,9 +18,14 @@ public class AssignPrefabToRoom : MonoBehaviour
         newSeedStr = newSeedStr.Substring(newSeedStr.Length - X - 1, X + 1);
 
         float newSeed = float.Parse(newSeedStr);
+
+        // Debug.Log("newSeed: " + newSeed);
+
         // this needs to be mapped to a number from 1 to numPrefabs,
         // which will be our prefabID
-        int prefabID = (int)Mathf.Floor(newSeed / numPreFabs);
+        int prefabID = (int)Mathf.Ceil(numPreFabs * newSeed / ((Mathf.Pow(10, X+1)) - 1));
+
+        Debug.Log("prefabID: " + prefabID);
 
         // prefabID currently is a value from 0 to numPreFabs-1
         // to make it go from 1 to numPreFabs, change 
@@ -33,7 +38,7 @@ public class AssignPrefabToRoom : MonoBehaviour
         int[] arr = new int[100];
         for (int i = 0; i < 100; i++)
         {
-            arr[i] = generatePreFabToRoom(UnityEngine.Random.Range(10000, 1000001), UnityEngine.Random.Range(1, 101), 32);
+            arr[i] = generatePreFabToRoom(UnityEngine.Random.Range(10000, 1000001), UnityEngine.Random.Range(1, 101), 1);
         }
         Array.Sort(arr);
         for (int i = 0; i < 100; i++)
