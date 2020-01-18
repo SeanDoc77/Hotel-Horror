@@ -111,10 +111,24 @@ public class HotelConstructor : MonoBehaviour
     private void addRooms()
     {
         int towerRoomAmount = 10 * floorAmount;
+        GameObject localRoom = room1;
         for (int i = 1; i <= towerRoomAmount; i++)
         {
-            int roomdID = generatePreFabToRoom(seed, i, 1);
-            Debug.Log("roomID: " + roomdID);
+            if (i <= towerRoomAmount / 2)
+            {
+                int prefabID = generatePreFabToRoom(seed, i, 1);
+                GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
+                newRoom.transform.localPosition = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                int prefabID = generatePreFabToRoom(seed, i, 1);
+                GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
+                newRoom.transform.localPosition = new Vector3(0, 0, 0);
+                newRoom.transform.Rotate(Vector3.up, 180, Space.Self);
+            }
         }
     }
 
@@ -131,9 +145,13 @@ public class HotelConstructor : MonoBehaviour
         newSeedStr = newSeedStr.Substring(newSeedStr.Length - X - 1, X + 1);
 
         float newSeed = float.Parse(newSeedStr);
+
+        // Debug.Log("newSeed: " + newSeed);
+
         // this needs to be mapped to a number from 1 to numPrefabs,
         // which will be our prefabID
-        int prefabID = (int)Mathf.Floor(newSeed / numPreFabs);
+        int prefabID = (int)Mathf.Ceil(numPreFabs * newSeed / ((Mathf.Pow(10, X + 1)) - 1));
+
 
         // prefabID currently is a value from 0 to numPreFabs-1
         // to make it go from 1 to numPreFabs, change 
