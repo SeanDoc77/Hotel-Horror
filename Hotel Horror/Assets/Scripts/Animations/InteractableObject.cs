@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     public bool isOpen = false;
+    public bool isLocked = false;
 
     public bool animatorIsPlaying()
     {

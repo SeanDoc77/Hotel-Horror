@@ -210,7 +210,7 @@ public class Interactables : MonoBehaviour
         //Light Switches
         else if (hit.collider.name == "LightSwitch")
         {
-            //hit.collider.GetComponent<LightswitchController>().FlipSwitch();          Sean Did THIS. Your Code is BROKEN
+            hit.collider.GetComponent<LightswitchController>().flipSwitch();
             Debug.Log("Lights on: " + hit.collider.GetComponent<LightswitchController>().lightsOn);
         }
 
