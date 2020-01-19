@@ -20,6 +20,11 @@ public class HotelConstructor : MonoBehaviour
         hotelSeed.generateSeed(); //Generates new seed
         seed = HotelSeed.seed;
 
+        constructHotel();
+    }
+
+    private void constructHotel()
+    {
         floorAmount = determineFloorsToAdd(seed, minFloors, maxFloors) + minFloors;
         createRoomGrid(floorAmount, minFloors, maxFloors);
         addRooms();
@@ -110,20 +115,32 @@ public class HotelConstructor : MonoBehaviour
 
     private void addRooms()
     {
-        int towerRoomAmount = 10 * floorAmount;
-        GameObject localRoom = room1;
+        //Obtain the list of rooms
+        //ListOfRooms roomList = new ListOfRooms();
+        List<GameObject> listOfGuestRooms = ListOfRooms.guestRoomList;
+        //listOfGuestRooms = roomList.guestRooms(); //Creates list of guestRooms
+
+        Debug.Log(listOfGuestRooms.Count);
+        int towerRoomAmount = 10 * floorAmount; //Total amount of rooms
+        //GameObject localRoom = room1;
         for (int i = 1; i <= towerRoomAmount; i++)
         {
+            //Instantiates rooms to the left half of the 5X2Xn grid
             if (i <= towerRoomAmount / 2)
             {
-                int prefabID = generatePreFabToRoom(seed, i, 1);
+                int prefabID = generatePreFabToRoom(seed, i, listOfGuestRooms.Count);
+                Debug.Log(prefabID);
+                GameObject localRoom = listOfGuestRooms[prefabID-1];
                 GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
                 newRoom.transform.localPosition = new Vector3(0, 0, 0);
             }
+            //Instantiates rooms to the right half of the 5X2Xn grid
             else
             {
-                int prefabID = generatePreFabToRoom(seed, i, 1);
+                int prefabID = generatePreFabToRoom(seed, i, listOfGuestRooms.Count);
+                Debug.Log(prefabID);
+                GameObject localRoom = listOfGuestRooms[prefabID-1];
                 GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
                 newRoom.transform.localPosition = new Vector3(0, 0, 0);
@@ -135,8 +152,10 @@ public class HotelConstructor : MonoBehaviour
     private int generatePreFabToRoom(int seed, int id, int numPreFabs)
     {
         // create a new number using seed and id
-        string newSeedStr = "" + Mathf.Ceil(seed / id);
-
+        int newSeedInt = (int)Mathf.Ceil(seed / id);
+        string newSeedStr = newSeedInt.ToString();
+        //Debug.Log(newSeedStr);
+        //Debug.Log(newSeedStr.Length);
         // number of digits of the seed we want(based on # prefabs we have)
         string maxStr = "" + numPreFabs;
         int X = maxStr.Length;
@@ -145,18 +164,18 @@ public class HotelConstructor : MonoBehaviour
         newSeedStr = newSeedStr.Substring(newSeedStr.Length - X - 1, X + 1);
 
         float newSeed = float.Parse(newSeedStr);
-
         // Debug.Log("newSeed: " + newSeed);
 
         // this needs to be mapped to a number from 1 to numPrefabs,
         // which will be our prefabID
-        int prefabID = (int)Mathf.Ceil(numPreFabs * newSeed / ((Mathf.Pow(10, X + 1)) - 1));
+        int prefabID = (int)Mathf.Floor(numPreFabs * newSeed / (Mathf.Pow(10, X + 1)));
 
+        //Debug.Log("prefabID: " + prefabID);
 
         // prefabID currently is a value from 0 to numPreFabs-1
         // to make it go from 1 to numPreFabs, change 
         // line 18: newSeedStr = newSeedStr.Substring(newSeedStr.Length - X, X + 1);
         // line 23: int prefabID = (int)Mathf.Floor(10 * newSeed / numPreFabs);
-        return prefabID;
+        return prefabID + 1;
     }
 }
