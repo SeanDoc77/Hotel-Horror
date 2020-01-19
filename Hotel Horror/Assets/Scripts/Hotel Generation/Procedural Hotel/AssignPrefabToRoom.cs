@@ -8,22 +8,25 @@ public class AssignPrefabToRoom : MonoBehaviour
     private int generatePreFabToRoom(int seed, int id, int numPreFabs)
     {
         // create a new number using seed and id
-        string newSeedStr = "" + Mathf.Ceil(seed / id);
+        string newSeedStr = Mathf.Ceil(seed / id);
+        Debug.Log("newSeedStr: " + newSeedStr + "; length = " + newSeedStr.Length);
 
         // number of digits of the seed we want(based on # prefabs we have)
         string maxStr = "" + numPreFabs;
         int X = maxStr.Length;
 
         // get an X digit number from our seed
-        newSeedStr = newSeedStr.Substring(newSeedStr.Length - X - 1, X + 1);
-
+        newSeedStr = newSeedStr.Substring(newSeedStr.Length - X, X + 1);
+        Debug.Log("substring of newSeedStr: " + newSeedStr);
+        
         float newSeed = float.Parse(newSeedStr);
 
-        // Debug.Log("newSeed: " + newSeed);
+        float argument = (numPreFabs * newSeed / (Mathf.Pow(10, X+1)));
+        Debug.Log("newSeed: " + newSeed + "; Floor arg: " + argument);
 
         // this needs to be mapped to a number from 1 to numPrefabs,
         // which will be our prefabID
-        int prefabID = (int)Mathf.Ceil(numPreFabs * newSeed / ((Mathf.Pow(10, X+1)) - 1));
+        int prefabID = 1 + (int)Mathf.Floor(numPreFabs * newSeed / (Mathf.Pow(10, X+1)));
 
         Debug.Log("prefabID: " + prefabID);
 
@@ -36,9 +39,11 @@ public class AssignPrefabToRoom : MonoBehaviour
     private void Start()
     {
         int[] arr = new int[100];
+        int seed1 = UnityEngine.Random.Range(10000, 1000000000);
+        Debug.Log("seed: " + seed1);
         for (int i = 0; i < 100; i++)
         {
-            arr[i] = generatePreFabToRoom(UnityEngine.Random.Range(10000, 1000001), UnityEngine.Random.Range(1, 101), 1);
+            arr[i] = generatePreFabToRoom(seed1, i+1, 2);
         }
         Array.Sort(arr);
         for (int i = 0; i < 100; i++)
