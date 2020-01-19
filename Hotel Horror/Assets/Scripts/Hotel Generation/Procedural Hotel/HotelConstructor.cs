@@ -6,7 +6,6 @@ using System;
 public class HotelConstructor : MonoBehaviour
 {
     public GameObject floor;
-    public GameObject room1;
     public int minFloors;
     public int maxFloors;
 
@@ -116,11 +115,8 @@ public class HotelConstructor : MonoBehaviour
     private void addRooms()
     {
         //Obtain the list of rooms
-        //ListOfRooms roomList = new ListOfRooms();
         List<GameObject> listOfGuestRooms = ListOfRooms.guestRoomList;
-        //listOfGuestRooms = roomList.guestRooms(); //Creates list of guestRooms
 
-        Debug.Log(listOfGuestRooms.Count);
         int towerRoomAmount = 10 * floorAmount; //Total amount of rooms
         //GameObject localRoom = room1;
         for (int i = 1; i <= towerRoomAmount; i++)
@@ -129,7 +125,6 @@ public class HotelConstructor : MonoBehaviour
             if (i <= towerRoomAmount / 2)
             {
                 int prefabID = generatePreFabToRoom(seed, i, listOfGuestRooms.Count);
-                Debug.Log(prefabID);
                 GameObject localRoom = listOfGuestRooms[prefabID-1];
                 GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
@@ -139,7 +134,6 @@ public class HotelConstructor : MonoBehaviour
             else
             {
                 int prefabID = generatePreFabToRoom(seed, i, listOfGuestRooms.Count);
-                Debug.Log(prefabID);
                 GameObject localRoom = listOfGuestRooms[prefabID-1];
                 GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
@@ -154,8 +148,7 @@ public class HotelConstructor : MonoBehaviour
         // create a new number using seed and id
         int newSeedInt = (int)Mathf.Ceil(seed / id);
         string newSeedStr = newSeedInt.ToString();
-        //Debug.Log(newSeedStr);
-        //Debug.Log(newSeedStr.Length);
+
         // number of digits of the seed we want(based on # prefabs we have)
         string maxStr = "" + numPreFabs;
         int X = maxStr.Length;
