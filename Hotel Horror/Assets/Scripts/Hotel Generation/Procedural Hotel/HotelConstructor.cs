@@ -13,7 +13,7 @@ public class HotelConstructor : MonoBehaviour
 
     int seed;
     int floorAmount; //Number of floors to add
-    
+
     void Start()
     {
         hotelSeed.generateSeed(); //Generates new seed
@@ -23,27 +23,24 @@ public class HotelConstructor : MonoBehaviour
         disableRooms();
     }
 
-    private void constructHotel()
+    // Update is called once per frame
+    void Update()
     {
-        floorAmount = determineFloorsToAdd(seed, minFloors, maxFloors) + minFloors;
-        createRoomGrid(floorAmount);
-        makeEmptyGameobjectChildren(floorAmount);
-        addRooms();
-        Debug.Log(seed);
+
     }
 
-    //Method that determines how many foors to add
+    //Determines the amount of floors to add on top of the minimum floor amount
     private int determineFloorsToAdd(int seed, int minFloors, int maxFloors)
     {
         int floorAmount;
         int digits = 3; //Number of digits to pick from middle of seed
 
-        float max = (float)maxFloors-(float)(minFloors); //Number of floors that can potentially be added
+        float max = (float)maxFloors - (float)(minFloors); //Number of floors that can potentially be added
         string seedString = seed.ToString(); //Converts the seed int to a string
         int stringLength = seedString.Length; //Gets the amount of digits in the seed string
 
         //Calculate a percentage using the middle two digit of the seed
-        string subString = seedString.Substring((int)(stringLength/2) - (int)(digits/2),  digits); //Gets the middle two digits of the seed
+        string subString = seedString.Substring((int)(stringLength / 2) - (int)(digits / 2), digits); //Gets the middle two digits of the seed
         float output = Int32.Parse(subString);//Converts the middle two digits to a float
         float percentage = (float)(output / Math.Pow(10, digits)); //Divides the 2 digit output by 100 to generate a percentage
         float amount = percentage * max; //Multiplies the max potential floors by the percentage
@@ -53,98 +50,71 @@ public class HotelConstructor : MonoBehaviour
         return floorAmount;
     }
 
-    //Method that creates a grid of empty game objects that will be used to add rooms
-    private void createRoomGrid(int floorAmount)
+    //Method to constuct the hotel
+    private void constructHotel()
+    {
+        floorAmount = determineFloorsToAdd(seed, minFloors, maxFloors) + minFloors;
+        createFloors(floorAmount);
+        addRooms();
+    }
+    private void createFloors(int floorAmount)
     {
         GameObject emptyObject = new GameObject(); //Creates empty game object
-        int towerRoomAmount = 10 * floorAmount; //number of floors
 
-        //starting position of empty game objects
-        int x = -15;
-        int y = 0;
-        int z = -40;
-
-        int counter = 0; //counter resets every 5 loops
-        int floorCount = 1;
-        for(int i = 1; i <= towerRoomAmount; i++)
+        int y = 0; //Starting height of floor;
+        for (int i = 1; i <= floorAmount; i++)
         {
-            if (i <= towerRoomAmount / 2)
+            GameObject newFloor = Instantiate(floor, new Vector3(0, y, 0), Quaternion.identity); //Adds new floor
+            newFloor.tag = "floor";
+            newFloor.name = "Floor: " + i.ToString();
+
+            //Instantiate a new room at these coordinates using the Floor's y coordinate
+            int xR = -15;
+            int zR = -40;
+
+            int count = 1;
+            for (int j = 1; j <= 10; j++)
             {
-                //Instantiate an empty gameobject with tag "Room" and name "(number)"
-                GameObject newRoom = Instantiate(emptyObject, new Vector3(x, y, z), Quaternion.identity);
+                GameObject newRoom = Instantiate(emptyObject, new Vector3(xR, y, zR), Quaternion.identity); //Adds empty game objects to floor
+                newRoom.transform.parent = newFloor.transform;
                 newRoom.tag = "room";
-                newRoom.name = i.ToString();
 
-                z += 20; //Add 20 to the z coordinate for next gameobject
-
-                //Reset z and add 5 to y when a new floor begins
-                counter += 1;
-                if (counter > 4)
+                //This if else statement creates the room naming convention
+                if (i < 10)
                 {
-                    GameObject newFloor = Instantiate(floor, new Vector3(0, y, 0), Quaternion.identity);
-                    newFloor.name = "Floor: " + floorCount.ToString();
-                    newFloor.tag = "floor";
-
-                    floorCount++;
-                    z = -40;
-                    y += 5;
-                    counter = 0;
+                    if (j < 10)
+                    {
+                        newRoom.name = "0" + i.ToString() + "0" + j.ToString();
+                    }
+                    else
+                    {
+                        newRoom.name = "0" + i.ToString() + j.ToString();
+                    }
                 }
-                if(i >= towerRoomAmount / 2)
+                else
                 {
-                    y = 0;
+                    if (j < 10)
+                    {
+                        newRoom.name = i.ToString() + "0" + j.ToString();
+                    }
+                    else
+                    {
+                        newRoom.name = i.ToString() + j.ToString();
+                    }
                 }
-            }
-            else
-            {
-                //Instantiate an empty gameobject with tag "Room" and name "(number)"
-                GameObject newRoom = Instantiate(emptyObject, new Vector3(-x, y, z), Quaternion.Euler(0f, 180f, 0f));
-                newRoom.tag = "room";
-                newRoom.name = i.ToString();
 
-                z += 20; //Add 20 to the z coordinate for next gameobject
+                zR += 20; //Adds 20 to the rooms Z direction to instantiate next object
 
-                //Reset z and add 5 to y when a new floor begins
-                counter += 1;
-                if (counter > 4)
+                count += 1;
+                if (count > 5) //If statement changes Z coordinate after half of the rooms floors are instantiated
                 {
-                    z = -40;
-                    y += 5;
-                    counter = 0;
+                    xR = 15;
+                    zR = -40;
+                    count = 0;
                 }
             }
-        }
-    }
 
-    //Method to make the room objects on each floor children of that floor
-    private void makeEmptyGameobjectChildren(int floorAmount)
-    {
-        int towerRoomAmount = 10 * floorAmount; //Total number of rooms
-        int count = 1;
-        int floor = 1;
-
-        for (int i = 1; i <= towerRoomAmount/2; i++)
-        {
-            GameObject.Find((i).ToString()).transform.parent = GameObject.Find("Floor: " + floor.ToString()).transform;
-            count += 1;
-            if (count > 5)
-            {
-                count = 1;
-                floor += 1;
-            }
-        }
-
-        count = 1;
-        floor = 1;
-        for (int i = towerRoomAmount/2 + 1; i <= towerRoomAmount; i++)
-        {
-            GameObject.Find((i).ToString()).transform.parent = GameObject.Find("Floor: " + floor.ToString()).transform;
-            count += 1;
-            if (count > 5)
-            {
-                count = 1;
-                floor += 1;
-            }
+            y += 5; //Increase floor height by 5
         }
     }
 
@@ -153,27 +123,24 @@ public class HotelConstructor : MonoBehaviour
         //Obtain the list of rooms
         List<GameObject> listOfGuestRooms = ListOfRooms.guestRoomList;
 
-        int towerRoomAmount = 10 * floorAmount; //Total amount of rooms
-        //GameObject localRoom = room1;
-        for (int i = 1; i <= towerRoomAmount; i++)
+        GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
+
+        foreach (GameObject room in rooms)
         {
-            //Instantiates rooms to the left half of the 5X2Xn grid
-            if (i <= towerRoomAmount / 2)
+            string roomName = room.name; //Gets the room number from the room name
+
+            int prefabID = generatePreFabToRoom(seed, int.Parse(roomName), listOfGuestRooms.Count); //Generates a prefab ID based on the seed and room number
+            GameObject localRoom = listOfGuestRooms[prefabID - 1]; //Creates a temporary gameobject from a list of prefabs
+            GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity); //Instantiates the room
+            newRoom.transform.parent = room.transform;
+            newRoom.transform.localPosition = new Vector3(0, 0, 0);
+
+            //Debug.Log(roomName);
+            string roomNumber = roomName.Substring(roomName.Length - 2, 2); //Get last tow digits of room number
+            int num = int.Parse(roomNumber); //Converts roomNumber to int
+
+            if (num > 5) //If the last two digits of the room numnber are greater than five, then rotate the new room 180 degrees around the y axis
             {
-                int prefabID = generatePreFabToRoom(seed, i, listOfGuestRooms.Count);
-                GameObject localRoom = listOfGuestRooms[prefabID-1];
-                GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
-                newRoom.transform.localPosition = new Vector3(0, 0, 0);
-            }
-            //Instantiates rooms to the right half of the 5X2Xn grid
-            else
-            {
-                int prefabID = generatePreFabToRoom(seed, i, listOfGuestRooms.Count);
-                GameObject localRoom = listOfGuestRooms[prefabID-1];
-                GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                newRoom.transform.parent = GameObject.Find(i.ToString()).transform;
-                newRoom.transform.localPosition = new Vector3(0, 0, 0);
                 newRoom.transform.Rotate(Vector3.up, 180, Space.Self);
             }
         }
@@ -208,7 +175,6 @@ public class HotelConstructor : MonoBehaviour
         return prefabID + 1;
     }
 
-    //A method that disables each room
     private void disableRooms()
     {
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
