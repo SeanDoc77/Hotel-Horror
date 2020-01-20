@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
-  - Left Room
+  - room
+  - floor
   layers:
   - Default
   - TransparentFX

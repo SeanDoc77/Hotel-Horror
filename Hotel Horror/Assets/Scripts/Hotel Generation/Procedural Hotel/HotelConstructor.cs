@@ -20,6 +20,7 @@ public class HotelConstructor : MonoBehaviour
         seed = HotelSeed.seed;
 
         constructHotel();
+        disableRooms();
     }
 
     private void constructHotel()
@@ -71,7 +72,7 @@ public class HotelConstructor : MonoBehaviour
             {
                 //Instantiate an empty gameobject with tag "Room" and name "(number)"
                 GameObject newRoom = Instantiate(emptyObject, new Vector3(x, y, z), Quaternion.identity);
-                newRoom.tag = "Left Room";
+                newRoom.tag = "room";
                 newRoom.name = i.ToString();
 
                 z += 20; //Add 20 to the z coordinate for next gameobject
@@ -82,6 +83,8 @@ public class HotelConstructor : MonoBehaviour
                 {
                     GameObject newFloor = Instantiate(floor, new Vector3(0, y, 0), Quaternion.identity);
                     newFloor.name = "Floor: " + floorCount.ToString();
+                    newFloor.tag = "floor";
+
                     floorCount++;
                     z = -40;
                     y += 5;
@@ -96,7 +99,7 @@ public class HotelConstructor : MonoBehaviour
             {
                 //Instantiate an empty gameobject with tag "Room" and name "(number)"
                 GameObject newRoom = Instantiate(emptyObject, new Vector3(-x, y, z), Quaternion.Euler(0f, 180f, 0f));
-                newRoom.tag = "Left Room";
+                newRoom.tag = "room";
                 newRoom.name = i.ToString();
 
                 z += 20; //Add 20 to the z coordinate for next gameobject
@@ -120,13 +123,24 @@ public class HotelConstructor : MonoBehaviour
         int count = 1;
         int floor = 1;
 
-        for (int i = 1; i <= towerRoomAmount; i++)
+        for (int i = 1; i <= towerRoomAmount/2; i++)
         {
-            Debug.Log(i);
-            Debug.Log("Floor: " + floor.ToString());
-            GameObject.Find(i.ToString()).transform.parent = GameObject.Find("Floor: " + floor.ToString()).transform;
+            GameObject.Find((i).ToString()).transform.parent = GameObject.Find("Floor: " + floor.ToString()).transform;
             count += 1;
-            if (count > 10)
+            if (count > 5)
+            {
+                count = 1;
+                floor += 1;
+            }
+        }
+
+        count = 1;
+        floor = 1;
+        for (int i = towerRoomAmount/2 + 1; i <= towerRoomAmount; i++)
+        {
+            GameObject.Find((i).ToString()).transform.parent = GameObject.Find("Floor: " + floor.ToString()).transform;
+            count += 1;
+            if (count > 5)
             {
                 count = 1;
                 floor += 1;
@@ -192,5 +206,16 @@ public class HotelConstructor : MonoBehaviour
         // line 18: newSeedStr = newSeedStr.Substring(newSeedStr.Length - X, X + 1);
         // line 23: int prefabID = (int)Mathf.Floor(10 * newSeed / numPreFabs);
         return prefabID + 1;
+    }
+
+    //A method that disables each room
+    private void disableRooms()
+    {
+        GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
+
+        foreach (GameObject room in rooms)
+        {
+            room.active = false;
+        }
     }
 }

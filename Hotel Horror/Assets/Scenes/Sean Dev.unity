@@ -666,6 +666,7 @@ GameObject:
   - component: {fileID: 1116629220}
   - component: {fileID: 1116629221}
   - component: {fileID: 1116629219}
+  - component: {fileID: 1116629222}
   m_Layer: 0
   m_Name: SeedTest
   m_TagString: Untagged
@@ -686,8 +687,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 7872136447765398312, guid: a5794efd6d81d71429c872ff16a3124a, type: 3}
-  minFloors: 3
-  maxFloors: 3
+  minFloors: 5
+  maxFloors: 5
 --- !u!4 &1116629220
 Transform:
   m_ObjectHideFlags: 0
@@ -716,6 +717,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room1: {fileID: 1099994635041879471, guid: 3d18969b72bddd64492b1053cc7e4876, type: 3}
   room2: {fileID: 8128565021279884525, guid: dde3bf18fbec552489f47a336ff16941, type: 3}
+--- !u!114 &1116629222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116629218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67904480e67d4ba41a086cdb77d9202a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1471958974
 GameObject:
   m_ObjectHideFlags: 0
