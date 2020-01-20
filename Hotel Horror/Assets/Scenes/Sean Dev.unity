@@ -386,6 +386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPSController
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.4
@@ -430,6 +434,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
 --- !u!1 &536079731
@@ -442,7 +450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536079732}
   - component: {fileID: 536079733}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +674,6 @@ GameObject:
   - component: {fileID: 1116629220}
   - component: {fileID: 1116629221}
   - component: {fileID: 1116629219}
-  - component: {fileID: 1116629222}
   m_Layer: 0
   m_Name: SeedTest
   m_TagString: Untagged
@@ -687,8 +694,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 7872136447765398312, guid: a5794efd6d81d71429c872ff16a3124a, type: 3}
-  minFloors: 5
-  maxFloors: 5
+  minFloors: 10
+  maxFloors: 10
 --- !u!4 &1116629220
 Transform:
   m_ObjectHideFlags: 0
@@ -715,20 +722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0dd700a7d96aa4d9731bd0dd16ec44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room1: {fileID: 1099994635041879471, guid: 3d18969b72bddd64492b1053cc7e4876, type: 3}
-  room2: {fileID: 8128565021279884525, guid: dde3bf18fbec552489f47a336ff16941, type: 3}
---- !u!114 &1116629222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116629218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67904480e67d4ba41a086cdb77d9202a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  room1: {fileID: 5592055214454448942, guid: 3d18969b72bddd64492b1053cc7e4876, type: 3}
+  room2: {fileID: 1416817890633797168, guid: dde3bf18fbec552489f47a336ff16941, type: 3}
+  room3: {fileID: 445203675262749804, guid: ab047ef8b392fab44b62e7ccc78a21e6, type: 3}
 --- !u!1 &1471958974
 GameObject:
   m_ObjectHideFlags: 0

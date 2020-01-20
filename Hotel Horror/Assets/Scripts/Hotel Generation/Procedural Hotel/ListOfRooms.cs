@@ -6,6 +6,7 @@ public class ListOfRooms : MonoBehaviour
 {
     public GameObject room1;
     public GameObject room2;
+    public GameObject room3;
 
     public static List<GameObject> guestRoomList = new List<GameObject>();
 
@@ -18,7 +19,7 @@ public class ListOfRooms : MonoBehaviour
         List<GameObject> guestRoomList = new List<GameObject>();
         guestRoomList.Add(room1);
         guestRoomList.Add(room2);
-        guestRoomList.Add(room2);
+        guestRoomList.Add(room3);
         return guestRoomList;
     }
 }

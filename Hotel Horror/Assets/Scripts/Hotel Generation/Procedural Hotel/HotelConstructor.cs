@@ -178,10 +178,23 @@ public class HotelConstructor : MonoBehaviour
     private void disableRooms()
     {
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
+        GameObject[] hallways = GameObject.FindGameObjectsWithTag("hallway");
+        GameObject[] stairways = GameObject.FindGameObjectsWithTag("stairway");
 
         foreach (GameObject room in rooms)
         {
             room.active = false;
+        }
+        foreach (GameObject hallway in hallways)
+        {
+            hallway.active = false;
+        }
+        foreach (GameObject stairway in stairways)
+        {
+            if (stairway.transform.parent.name != "Floor: 1")
+            {
+                stairway.active = false;
+            }
         }
     }
 }

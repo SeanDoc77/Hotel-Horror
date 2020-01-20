@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - room
   - floor
+  - hallway
+  - stairway
   layers:
   - Default
   - TransparentFX
