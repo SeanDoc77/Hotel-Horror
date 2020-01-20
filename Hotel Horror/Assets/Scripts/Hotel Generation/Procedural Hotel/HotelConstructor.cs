@@ -25,7 +25,8 @@ public class HotelConstructor : MonoBehaviour
     private void constructHotel()
     {
         floorAmount = determineFloorsToAdd(seed, minFloors, maxFloors) + minFloors;
-        createRoomGrid(floorAmount, minFloors, maxFloors);
+        createRoomGrid(floorAmount);
+        makeEmptyGameobjectChildren(floorAmount);
         addRooms();
         Debug.Log(seed);
     }
@@ -52,7 +53,7 @@ public class HotelConstructor : MonoBehaviour
     }
 
     //Method that creates a grid of empty game objects that will be used to add rooms
-    private void createRoomGrid(int floorAmount, int minFLoors, int maxFloors)
+    private void createRoomGrid(int floorAmount)
     {
         GameObject emptyObject = new GameObject(); //Creates empty game object
         int towerRoomAmount = 10 * floorAmount; //number of floors
@@ -108,6 +109,27 @@ public class HotelConstructor : MonoBehaviour
                     y += 5;
                     counter = 0;
                 }
+            }
+        }
+    }
+
+    //Method to make the room objects on each floor children of that floor
+    private void makeEmptyGameobjectChildren(int floorAmount)
+    {
+        int towerRoomAmount = 10 * floorAmount; //Total number of rooms
+        int count = 1;
+        int floor = 1;
+
+        for (int i = 1; i <= towerRoomAmount; i++)
+        {
+            Debug.Log(i);
+            Debug.Log("Floor: " + floor.ToString());
+            GameObject.Find(i.ToString()).transform.parent = GameObject.Find("Floor: " + floor.ToString()).transform;
+            count += 1;
+            if (count > 10)
+            {
+                count = 1;
+                floor += 1;
             }
         }
     }
