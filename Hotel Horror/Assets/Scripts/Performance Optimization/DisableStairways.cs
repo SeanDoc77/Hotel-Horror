@@ -13,7 +13,6 @@ public class DisableStairways : MonoBehaviour
                 room.gameObject.active = true;
             }
         }
-        Debug.Log(collision.gameObject.name);
     }
 
     private void OnTriggerExit(Collider collision)

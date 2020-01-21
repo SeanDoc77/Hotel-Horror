@@ -23,7 +23,7 @@ public class Interactables : MonoBehaviour
             hitDistance = hit.distance;
 
             //Print object name and distance to console every frame
-            Debug.Log(hit.collider.name + ", " + hit.distance);
+            //Debug.Log(hit.collider.name + ", " + hit.distance);
 
             //Call InteractWith on the object that the player is looking at
             //If the player presses E on an object tagged as interactable that's within 4.0 meters
