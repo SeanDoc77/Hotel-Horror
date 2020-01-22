@@ -6,7 +6,6 @@ public class DisableRooms : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("enter");
         foreach (Transform room in gameObject.transform.parent.transform)
         {
             if (room.transform.tag == "room")
@@ -22,7 +21,6 @@ public class DisableRooms : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        Debug.Log("exit");
         foreach (Transform room in gameObject.transform.parent.transform)
         {
             if (room.transform.tag == "room")
