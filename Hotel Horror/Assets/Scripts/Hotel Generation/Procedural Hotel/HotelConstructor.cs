@@ -5,6 +5,8 @@ using System;
 
 public class HotelConstructor : MonoBehaviour
 {
+    [SerializeField] public GameObject[] guestRooms;
+
     public GameObject floor;
     public int minFloors;
     public int maxFloors;
@@ -114,17 +116,15 @@ public class HotelConstructor : MonoBehaviour
 
     private void addRooms()
     {
-        //Obtain the list of rooms
-        List<GameObject> listOfGuestRooms = ListOfRooms.guestRoomList;
-
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("room");
 
         foreach (GameObject room in rooms)
         {
             string roomName = room.name; //Gets the room number from the room name
 
-            int prefabID = generatePreFabToRoom(seed, int.Parse(roomName), listOfGuestRooms.Count); //Generates a prefab ID based on the seed and room number
-            GameObject localRoom = listOfGuestRooms[prefabID - 1]; //Creates a temporary gameobject from a list of prefabs
+            int prefabID = generatePreFabToRoom(seed, int.Parse(roomName), guestRooms.Length); //Generates a prefab ID based on the seed and room number
+            Debug.Log(guestRooms.Length);
+            GameObject localRoom = guestRooms[prefabID - 1]; //Creates a temporary gameobject from a list of prefabs
             GameObject newRoom = Instantiate(localRoom, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity); //Instantiates the room
             newRoom.transform.parent = room.transform;
             newRoom.transform.localPosition = new Vector3(0, 0, 0);
